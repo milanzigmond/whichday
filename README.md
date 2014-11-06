@@ -1,4 +1,4 @@
 whichday
 ========
 
-Choose a day in a week for a next meetup.
+Choose a day in a week for next meetup. Together!

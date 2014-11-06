@@ -1,11 +1,10 @@
 body {
-	/*font-family: 'Trajan PRO';*/
 	font-family: 'Poiret One', cursive;
 	background-color: #f6f6f6;
 }
 
 h1 {
-	text-decoration: bold;
+	font-family:'Tahoma';
 }
 
 h2 {
@@ -26,10 +25,8 @@ ul {
 }
 
 .row {
-	/*height: 500px;*/
 	color: white;
 }
-
 
 .monday {background-color: rgba(0,48,90,1);}
 .tuesday {background-color: #004B8D;}
