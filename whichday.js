@@ -1,106 +1,88 @@
-Days = new Mongo.Collection('days');
+// Days = new Mongo.Collection('days');
 
-if (Meteor.isClient) {
+// if (Meteor.isClient) {
 	
-	Meteor.startup( function () {
-		Accounts.ui.config({
-			passwordSignupFields: 'USERNAME_ONLY'
-		});
-	});
+// 	Meteor.startup( function () {
+// 		Accounts.ui.config({
+// 			passwordSignupFields: 'USERNAME_ONLY'
+// 		});
+// 	});
 
-	function updateOpacity (target) {
-		$(target).css( "background-color" , "#ff0000");
-	}
+// 	Template.choose.helpers({
+// 		days: function () {
+// 			// return Session.get('days');
+// 			return Days.find({});
+// 			// return Days.find({}, {sort: {userIds: -1}});
+// 		}
+// 	});	
 
-	Template.choose.created = function () {
-	    // Session.setDefault('websitesCount', null);
-	    Session.setDefault('days', [
-								'Monday', 
-								'Tuesday',
-								'Wednesday',
-								'Thursday',
-								'Friday',
-								'Saturday',
-								'Sunday'
-							]);
-	};
+// 	Template.day.helpers({
+// 		style: function () {
+// 			return this.name.toLowerCase();
+// 		},
+// 		userCount: function () {
+// 			return this.userIds.length;
+// 		},
+// 		usernameFor: function (id) {
+// 			if(Meteor.users.find().count() === 0) return;
+// 			return Meteor.users.findOne({_id:id}).username;
+// 		}
+// 	});
 
-	Template.choose.helpers({
-		days: function () {
-			// return Session.get('days');
-			return Days.find({});
-			// return Days.find({}, {sort: {userIds: -1}});
-		}
-	});	
+// 	Template.day.events({
+// 		'click': function (event, template) {
+// 			event.preventDefault();
 
-	Template.day.helpers({
-		style: function () {
-			return this.name.toLowerCase();
-		},
-		userCount: function () {
-			return this.userIds.length;
-		},
-		usernameFor: function (id) {
-			if(Meteor.users.find().count() === 0) return;
-			return Meteor.users.findOne({_id:id}).username;
-		}
-	});
+// 			var userid = Meteor.userId();
+// 			if(!userid) {
+// 				alert('Login to vote');
+// 				return;
+// 			}
 
-	Template.day.events({
-		'click': function (event, template) {
-			event.preventDefault();
+// 			Meteor.call('changeDay', this._id, userid);
+// 		}
+// 	});
 
-			var userid = Meteor.userId();
-			if(!userid) {
-				alert('Login to vote');
-				return;
-			}
+// 	Template.day.created = function () {
+// 		updateOpacity(this);
+// 	};
+// };
 
-			Meteor.call('changeDay', this._id, userid);
-		}
-	});
+// if(Meteor.isServer) {
 
-	Template.day.created = function () {
-		updateOpacity(this);
-	};
-};
+// 	Meteor.methods({
+// 	    changeDay: function ( dayId, userId ) {
 
-if(Meteor.isServer) {
+// 	    	var currentUserIds = Days.findOne({_id:dayId}).userIds;
+// 	    	var currentlySelectedDay = Days.findOne({userIds: {$in: [userId]}});
 
-	Meteor.methods({
-	    changeDay: function ( dayId, userId ) {
+// 	    	console.log(currentlySelectedDay);
 
-	    	var currentUserIds = Days.findOne({_id:dayId}).userIds;
-	    	var currentlySelectedDay = Days.findOne({userIds: {$in: [userId]}});
+// 	        if(currentUserIds.indexOf(userId) === -1) {
+// 				Days.update({_id:dayId}, {$push: {userIds: userId}});
+// 				Days.update({_id:currentlySelectedDay._id}, {$pull: {userIds: userId}});
+// 				// Days.update({_id: {$ne: dayId}}, {$pull: {userIds: userId}});
+// 			} else {
+// 				Days.update({_id:dayId}, {$pull: {userIds: userId}});
+// 			}
+// 	    }
+// 	});
 
-	    	console.log(currentlySelectedDay);
+// 	Meteor.startup(function () {		
+// 		var days = [
+// 						'Monday', 
+// 						'Tuesday',
+// 						'Wednesday',
+// 						'Thursday',
+// 						'Friday',
+// 						'Saturday',
+// 						'Sunday'
+// 					];
 
-	        if(currentUserIds.indexOf(userId) === -1) {
-				Days.update({_id:dayId}, {$push: {userIds: userId}});
-				Days.update({_id:currentlySelectedDay._id}, {$pull: {userIds: userId}});
-				// Days.update({_id: {$ne: dayId}}, {$pull: {userIds: userId}});
-			} else {
-				Days.update({_id:dayId}, {$pull: {userIds: userId}});
-			}
-	    }
-	});
-
-
-	Meteor.startup(function () {		
-		var days = [
-						'Monday', 
-						'Tuesday',
-						'Wednesday',
-						'Thursday',
-						'Friday',
-						'Saturday',
-						'Sunday'
-					];
-
-		if (Days.find().count() === 0) {
-			_.each(days, function (day){
-				Days.insert({name:day, userIds:[]});
-			});
-		};
-	});
-}
+// 		if (Days.find().count() === 0) {
+// 			_.each(days, function (day){
+// 				Days.insert({name:day, userIds:[]});
+// 			});
+// 		};
+// 	});
+// }

@@ -7,7 +7,7 @@
 	{{> choose}}
 </body>
 
-<template name="day">
+<!-- <template name="day">
 	<div class="dimmed column {{style}}" data-content="Login to vote!" data-variation="large" data-position="bottom center">
 	
 		<h2>{{this.name}}</h2>
@@ -21,17 +21,18 @@
 			{{/each}}
 		</ul>
 	</div>
-</template>
+</template> -->
 
 <template name="choose">
-	<h1><i class="calendar icon"></i>What is the best day for you for next Meteor meetup {{> loginButtons}} ?</h1>
+	<!-- <h1><i class="calendar icon"></i>What is the best day for you for next Meteor meetup {{> loginButtons}} ?</h1> -->
+	<h1><i class="calendar icon"></i>What is the best day for you for next Meteor meetup?</h1>
 
 	<div class="ui seven column divided grid">
 	  	<div class="row">
-	  		{{#each days}}
+	  		<!-- {{#each days}}
 	  			{{> day}}
-	  		{{/each}}
-			<!-- <div class="column monday">
+	  		{{/each}} -->
+			 <div class="column monday">
 				<h2>Monday</h2>
 				<h2>4</h2>
 				<div class="ui horizontal icon divider">
@@ -104,7 +105,7 @@
 				<div class="ui horizontal icon divider">
 				  <i class="heart icon"></i>
 				</div>
-			</div>-->
+			</div>
 		</div> 
 	</div>
 </template>
