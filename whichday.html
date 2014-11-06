@@ -1,0 +1,110 @@
+	<head>
+	<title>WhichDay</title>
+	<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	{{> choose}}
+</body>
+
+<template name="day">
+	<div class="dimmed column {{style}}" data-content="Login to vote!" data-variation="large" data-position="bottom center">
+	
+		<h2>{{this.name}}</h2>
+		<h2>{{userCount}}</h2>
+		<div class="ui horizontal icon divider">
+			<i class="heart icon"></i>
+		</div>
+		<ul>
+			{{#each userIds}}
+				<li><h3>{{usernameFor this}}</h3></li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="choose">
+	<h1><i class="calendar icon"></i>What is the best day for you for next Meteor meetup {{> loginButtons}} ?</h1>
+
+	<div class="ui seven column divided grid">
+	  	<div class="row">
+	  		{{#each days}}
+	  			{{> day}}
+	  		{{/each}}
+			<!-- <div class="column monday">
+				<h2>Monday</h2>
+				<h2>4</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Milan</h3></li>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+				</ul>
+			</div>
+			<div class="column tuesday">
+				<h2>Tuesday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+				</ul>
+			</div>
+			<div class="column wednesday">
+				<h2>Wednesday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Milan</h3></li>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+				</ul>
+			</div>
+			<div class="column thursday">
+				<h2>Thursday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Milan</h3></li>
+				</ul>
+			</div>
+			<div class="column friday">
+				<h2>Friday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Milan</h3></li>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+					<li><h3>Milan</h3></li>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+					<li><h3>Milan</h3></li>
+					<li><h3>Jano</h3></li>
+					<li><h3>Silvia</h3></li>
+				</ul>
+			</div>
+			<div class="column saturday">
+				<h2>Saturday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+				<ul>
+					<li><h3>Katka</h3></li>
+				</ul>
+			</div>
+			<div class="column sunday">
+				<h2>Sunday</h2>
+				<div class="ui horizontal icon divider">
+				  <i class="heart icon"></i>
+				</div>
+			</div>-->
+		</div> 
+	</div>
+</template>

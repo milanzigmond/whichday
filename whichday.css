@@ -1,0 +1,40 @@
+body {
+	/*font-family: 'Trajan PRO';*/
+	font-family: 'Poiret One', cursive;
+	background-color: #f6f6f6;
+}
+
+h1 {
+	text-decoration: bold;
+}
+
+h2 {
+	text-align: center;
+}
+
+.column:hover {
+	background-color: black;
+}
+
+.heart {
+	color: white;
+}
+
+ul {
+	list-style: none;
+	padding-left: 10px;
+}
+
+.row {
+	/*height: 500px;*/
+	color: white;
+}
+
+
+.monday {background-color: rgba(0,48,90,1);}
+.tuesday {background-color: #004B8D;}
+.wednesday {background-color: #0074D9;}
+.thursday {background-color: #4192D9;}
+.friday {background-color: #7ABAF2;}
+.saturday {background-color: #D9922E;}
+.sunday {background-color: #D9755E;}
